@@ -8,7 +8,7 @@ Yea, its possible, and its fun
 - Install your two themes
 - In this case:
     ```
-    git clone https://github.com/Lxtharia/minegrub-sp-theme.git && cd minegrub-sp-theme
+    git clone https://github.com/Lxtharia/minegrub-world-sel-theme.git && cd minegrub-world-sel-theme
     sudo cp -ruv minegrub-world-selection /boot/grub/themes/
     cd ..
     # And the other one
