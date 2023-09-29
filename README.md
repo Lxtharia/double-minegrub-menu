@@ -67,9 +67,11 @@ TLDR:
 - we now have our main menu and if we select "Singlebooter" it loads the grub.cfg again.
 - but now the "chosen" variable is set (because we have chosen an option)
 - If this variable is set, we prevent the grub.cfg to load mainmenu.cfg and we see our normal boot options
+
 # Notes
 - the fun zone
 - i write very long READMEs
 - if you generate or copy your grub.cfg to /boot/grub/custom.cfg your grub will be stuck in an infinite loop! (Luckily I learned that in a VM)
 - This took more energy from me than it should've
-- I'm happy how it turned out, can't wait for all the bug reports
+- I'm happy how it turned out, can't wait for all the merge requests ha ha
+- Also check out this minecraft plymouth theme by nikp123 for a minecraft loading screen during boot: https://github.com/nikp123/minecraft-plymouth-theme
