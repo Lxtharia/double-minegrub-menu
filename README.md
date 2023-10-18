@@ -1,7 +1,9 @@
-# The REAL minecraft experience when booting your systems!
+# The REAL minecraft experience when booting your system!
 
-This is a guide on how you can have two grub menus with different themes at the same time.
+This is a guide on how you can have two grub menus after one another, each in a different theme!
+
 I made this so I can use my minegrub theme that looks like the Minecraft main menu to enter my _second_ minegrub theme that looks like the minecraft world selection menu _just like in the real game_
+
 Yea, its possible, and its fun
 
 # Installation
@@ -14,7 +16,8 @@ Yea, its possible, and its fun
     git clone https://github.com/Lxtharia/minegrub-theme.git && cd minegrub-theme
     sudo cp -ruv minegrub/boot/grub/themes/
     ```
-    - Check them out here for more instructions: (minegrub-theme)[https://github.com/Lxtharia/minegrub-theme] and (minegrub-world-sel-theme)[https://github.com/Lxtharia/minegrub-world-sel-theme]
+    - Check them out here for more instructions: [minegrub-theme](https://github.com/Lxtharia/minegrub-theme) and [minegrub-world-sel-theme](https://github.com/Lxtharia/minegrub-world-sel-theme)
+
 - Set your world-selection theme in `/etc/default/grub` and other trivial stuff, you got this
     ```
     GRUB_TIMEOUT_STYLE=menu
