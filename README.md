@@ -6,7 +6,7 @@ I made this so I can use my minegrub theme that looks like the Minecraft main me
 
 Yea, its possible, and its fun
 
-<video src='https://github.com/Lxtharia/double-minegrub-menu/assets/87075045/d3ed72b1-207a-4212-b9e3-2b103da105e8' width=180 > </video>
+<video src='https://github.com/Lxtharia/double-minegrub-menu/assets/87075045/3b317b16-482c-44cf-9faa-75a3f437e7b5' width=180 > </video>
 
 
 # Installation
