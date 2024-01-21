@@ -1,0 +1,22 @@
+{
+    "theme": {
+        "file": [
+		"/ventoy/theme/minegrub-world-selection/theme.txt",
+		"/ventoy/theme/minegrub/theme.txt"
+	],
+	"default_file": 1,
+        "gfxmode": "1920x1080",
+        "display_mode": "GUI",
+        "serial_param": "--unit=0 --speed=9600",
+        "ventoy_left": "5%",
+        "ventoy_top": "95%",
+        "ventoy_color": "#0000ff",
+        "fonts": [
+            "/ventoy/theme/minegrub-world-selection/Monocraft22.pf2",
+            "/ventoy/theme/minegrub-world-selection/Minecraft30.pf2",
+            "/ventoy/theme/minegrub/Monocraft22.pf2",
+            "/ventoy/theme/minegrub/Minecraft24.pf2",
+            "/ventoy/theme/minegrub/Minecraft30.pf2"
+        ]
+    }
+}
