@@ -3,8 +3,8 @@
         "file": [
 		"/ventoy/theme/minegrub-world-selection/theme.txt",
 		"/ventoy/theme/minegrub/theme.txt"
-	],
-	"default_file": 1,
+        ],
+        "default_file": 1,
         "gfxmode": "1920x1080",
         "display_mode": "GUI",
         "serial_param": "--unit=0 --speed=9600",
@@ -18,5 +18,43 @@
             "/ventoy/theme/minegrub/Minecraft24.pf2",
             "/ventoy/theme/minegrub/Minecraft30.pf2"
         ]
-    }
+    },
+    "menu_class": [
+        {
+            "key": "arch",
+            "class": "arch"
+        },
+        {
+            "key": "debian",
+            "class": "debian"
+        },
+        {
+            "key": "ubuntu",
+            "class": "ubuntu"
+        },        
+        {
+            "key": "linuxmint",
+            "class": "linuxmint"
+        },
+        {
+            "key": "manjaro",
+            "class": "manjaro"
+        },
+        {
+            "key": "void",
+            "class": "void"
+        },
+        {
+            "key": "linux",
+            "class": "linux"
+        },
+        {
+            "dir": "/Linux",
+            "class": "linux"
+        },        
+        {
+            "dir": "",
+            "class": "os"
+        }
+    ]
 }
