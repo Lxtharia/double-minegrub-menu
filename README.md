@@ -1,3 +1,8 @@
+**The Minecraft Grub Theme Trio:**
+
+| [Minecraft Main Menu](https://github.com/Lxtharia/minegrub-theme) | [Minecraft World Selection Menu](https://github.com/Lxtharia/minegrub-world-sel-theme) | *> Using both themes together <* |
+| --- | --- | --- |
+
 # The REAL minecraft experience when booting your system!
 
 This is a guide on how you can have two grub menus after one another, each in a different theme!
