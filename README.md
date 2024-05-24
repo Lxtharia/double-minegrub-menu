@@ -35,17 +35,22 @@ Yea, its possible, and its fun
     ...
     GRUB_GFXMODE=...
     ```
-- clone this repo or download the files (it's only two)
+- clone _this_ repo or download the files (it's only two)
     ```bash
     git clone https://github.com/Lxtharia/minegrub-double-menu.git && cd minegrub-double-menu
     ```
-- copy the files, generate the .cfg and set the env variable
+- copy the files
     ```bash
     sudo cp ./mainmenu.cfg /boot/grub/
     sudo cp ./05_twomenus /etc/grub.d/
     chmod +x /etc/grub.d/05_twomenus
-
+    ```
+- regenerate the grub.cfg and set the env variable
+    ```
     sudo grub-mkconfig -o /boot/grub/grub.cfg
+    ```
+- to **enable** it, you need to set 
+    ```
     sudo grub-editenv - set config_file=mainmenu.cfg
     ```
 - Done!
@@ -53,6 +58,11 @@ Yea, its possible, and its fun
     ```bash
     sudo grub-editenv - unset config_file
     ```
+
+## Ventoy Support
+
+[Ventoy](https://www.ventoy.net/en/index.html) is using a modified version of grub, but has theme support.
+If you want Ventoy to use both themes see [here.](./ventoy/README.md)
 
 # Explanation
 When grub starts, it by default reads the file `grub.cfg` usally located in `/boot/grub/grub.cfg` to set all the options (like timeout, default boot option, theme) and add all the boot options.
