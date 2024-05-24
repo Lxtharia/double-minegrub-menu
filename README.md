@@ -30,7 +30,7 @@ Yea, its possible, and its fun
     - Check them out here for more instructions: [minegrub-theme](https://github.com/Lxtharia/minegrub-theme) and [minegrub-world-sel-theme](https://github.com/Lxtharia/minegrub-world-sel-theme)
 
 - Set the **world-selection** theme in `/etc/default/grub` and other trivial stuff
-    ```
+    ```bash
     GRUB_TIMEOUT_STYLE=menu
     ...
     GRUB_THEME=/boot/grub/themes/minegrub-world-selection/theme.txt
@@ -47,12 +47,12 @@ Yea, its possible, and its fun
     sudo cp ./05_twomenus /etc/grub.d/
     chmod +x /etc/grub.d/05_twomenus
     ```
-- regenerate the grub.cfg and set the env variable
-    ```
+- regenerate the grub.cfg
+    ```bash
     sudo grub-mkconfig -o /boot/grub/grub.cfg
     ```
-- to **enable** it, you need to set 
-    ```
+- to **enable** it, you need to set a grub environmental variable:
+    ```bash
     sudo grub-editenv - set config_file=mainmenu.cfg
     ```
 - Done!
