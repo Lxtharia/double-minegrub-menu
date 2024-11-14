@@ -18,7 +18,9 @@ Yea, its possible, and its fun
 
 # Installation
 
-## Run the Automatic Installation Script
+Here we provide two methods to install it: automatic installation and manual installation.
+
+## Automatic Installation
 
 All you only need to do is to clone this project, and run the bash script we provide:
 
@@ -30,7 +32,7 @@ Then everything is done! Our installation script will prepare everything well fo
 
 ## Manual Installation
 
-You can also choose do intall it manually, just do as follow:
+You can also choose to install it manually, just do as follow:
 
 - Install your two themes, in this case:
     ```bash
