@@ -66,6 +66,6 @@ fi
 sudo sed -i "/^GRUB_TIMEOUT_STYLE=/d" /etc/default/grub
 sudo sed -i "/^GRUB_THEME=/d" /etc/default/grub
 echo -e "GRUB_TIMEOUT_STYLE=menu" | sudo tee -a /etc/default/grub > /dev/null
-echo -e "GRUB_THEME=/boot/grub/themes/minegrub-world-selection/theme.txt" | sudo tee -a /etc/default/grub > /dev/null
+echo -e "GRUB_THEME=/boot/$GRUB_PREFIX/themes/minegrub-world-selection/theme.txt" | sudo tee -a /etc/default/grub > /dev/null
 sudo $GRUB_PREFIX-mkconfig -o /boot/$GRUB_PREFIX/grub.cfg
 sudo $GRUB_PREFIX-editenv - set config_file=mainmenu.cfg
