@@ -3,7 +3,10 @@
 | [Minecraft Main Menu](https://github.com/Lxtharia/minegrub-theme) | [Minecraft World Selection Menu](https://github.com/Lxtharia/minegrub-world-sel-theme) | *> Using both themes together <* |
 | --- | --- | --- |
 
-- **ADDITIONALLY!:** Check out this minecraft plymouth theme by nikp123 for a minecraft loading screen during boot: https://github.com/nikp123/minecraft-plymouth-theme
+**Also check out these other projects:**
+| [Minecraft SDDM Theme](https://github.com/Davi-S/sddm-theme-minesddm) by Davi-S | [Minecraft Plymouth Theme](https://github.com/nikp123/minecraft-plymouth-theme) by nikp123 |
+| --- | --- |
+
 
 # The REAL minecraft experience when booting your system!
 
