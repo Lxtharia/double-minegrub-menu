@@ -38,6 +38,11 @@ if [ ! -d ./minegrub-double-menu ]; then
 	git clone https://github.com/Lxtharia/minegrub-double-menu.git
 fi
 
+# download and install netboot image
+sudo mkdir -p /boot/EFI/netboot.xyz/
+sudo wget https://boot.netboot.xyz/ipxe/netboot.xyz.efi -O /boot/EFI/netboot.xyz/netboot.xyz.efi
+cp ./mainmenu.cfg ./minegrub-double-menu/
+
 # copy theme files
 
 if [ ! -d /boot/$GRUB_PREFIX/themes ]; then
@@ -62,7 +67,6 @@ if [ ! -f /etc/grub.d/05_twomenus ]; then
 fi
 
 # change grub configuration
-
 sudo sed -i "/^GRUB_TIMEOUT_STYLE=/d" /etc/default/grub
 sudo sed -i "/^GRUB_THEME=/d" /etc/default/grub
 echo -e "GRUB_TIMEOUT_STYLE=menu" | sudo tee -a /etc/default/grub > /dev/null
