@@ -79,6 +79,36 @@ You can also choose to install it manually, just do as follow:
     ```bash
     sudo grub-editenv - unset config_file
     ```
+## Gentoo Installation
+- Add the overlay to your system
+    ```bash
+    eselect repository enable tomoshibi-overlay
+    emaint sync -r tomoshibi-overlay
+    ```
+- Choose theme for minegrub-theme, there are 13 themes available that can be chosen via theme0, theme1, theme2, ..., theme12 USE flags. You can use `equery u minegrub-theme` to view the description of these flags. Keep in mind that exactly one of these USE flags must be enabled.
+    ```bash
+    echo sys-boot/minegrub-theme theme0 > /etc/portage/package.use/50-minegrub-theme
+    ```
+- Install
+    ```bash
+    emerge sys-boot/double-minegrub-menu::tomoshibi-overlay
+    ```
+- The remain steps are the same as manual installation, i'll copy these here.
+- regenerate the grub.cfg
+    ```bash
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+    ```
+- to **enable** it, you need to set a grub environmental variable:
+    ```bash
+    sudo grub-editenv - set config_file=mainmenu.cfg
+    ```
+- Done!
+- If you want to remove it all you need to do is
+    ```bash
+    emerge -c sys-boot/double-minegrub-menu::tomoshibi-overlay
+    sudo grub-editenv - unset config_file
+    ```
+- After that please edit your `/etc/default/grub` properly.
 
 ## Ventoy Support
 
