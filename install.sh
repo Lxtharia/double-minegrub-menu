@@ -38,13 +38,18 @@ if [ ! -d ./minegrub-double-menu ]; then
 	git clone https://github.com/Lxtharia/minegrub-double-menu.git
 fi
 
-# download and install netboot image
-sudo mkdir -p /boot/EFI/netboot.xyz/
-sudo wget https://boot.netboot.xyz/ipxe/netboot.xyz.efi -O /boot/EFI/netboot.xyz/netboot.xyz.efi
-cp ./mainmenu.cfg ./minegrub-double-menu/
+
+read -p "Would you like to use a netboot.xyz image to make 'Onlinebooter' work? (y/n)" -n 1 -r
+
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  # download and install netboot image
+	sudo mkdir -p /boot/EFI/netboot.xyz/
+	sudo wget https://boot.netboot.xyz/ipxe/netboot.xyz.efi -O /boot/EFI/netboot.xyz/netboot.xyz.efi
+	cp ./mainmenu.cfg ./minegrub-double-menu/ ## VERY JANKY THING ONLY FOR LOCAL DEBUGGING, REMOVE IN RELEASE.
+fi
 
 # copy theme files
-
 if [ ! -d /boot/$GRUB_PREFIX/themes ]; then
 	sudo mkdir -p /boot/$GRUB_PREFIX/themes
 fi
