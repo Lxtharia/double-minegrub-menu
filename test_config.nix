@@ -12,11 +12,5 @@
     fsType = "ext4";
   };
 
-  services.double-minegrub-menu = {
-    enable = true;
-    background = "random";
-    splashText = "random";
-  }; 
-  
   system.stateVersion = "26.05";
 }

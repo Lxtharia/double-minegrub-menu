@@ -114,7 +114,7 @@
                 }) allBgs);
               in
               {
-                "grub/mainmenu.cfg" = "./mainmenu.cfg";
+                "grub/mainmenu.cfg" = ./mainmenu.cfg;
               } // themeFileEntries // bgFileEntries;
 
               # 3. Inject the logic from 05_twomenus into grub.cfg
