@@ -110,6 +110,67 @@ You can also choose to install it manually, just do as follow:
     ```
 - After that please edit your `/etc/default/grub` properly.
 
+## NixOS Installation
+Add this in `flake.nix`:
+
+```nix
+{
+    inputs = {
+        double-minegrub-menu.url = "github:Lxtharia/double-minegrub-menu/main";
+    };
+
+    outputs = inputs@{self, ...}: {
+        nixosConfigurations.<hostname> = nixpkgs.lib.nixosSystem {
+            modules = [
+                inputs.double-minegrub-menu.nixosModules.default
+                configuration.nix
+            ];
+        };
+    };
+}
+```
+
+Then enable and configure the service in your configuration.nix:, for example:
+
+```nix
+{pkgs, config, ...}:{
+
+    services.double-minegrub-menu = {
+        enable = true;
+        main_menu_background = "backgrounds/1.13 - [Aquatic update].png";
+        splash_text = "100% Declarative";
+    };
+}
+```
+
+after that, **Rebuild your system**, and then set the `config_file` environment variable in `grubenv` to enable the main menu theme:
+
+```bash
+nix-shell -p grub2 --command "sudo grub-editenv - set config_file=mainmenu.cfg"
+```
+
+To remove the variable and **disable the theme**, run:
+
+```bash
+nix-shell -p grub2 --command "sudo grub-editenv - unset config_file=mainmenu.cfg"
+```
+
+### Testing the theme
+You can test the theme before applying it on your machine by building a VM with the bootloader:
+
+```bash
+sudo nixos-rebuild build-vm-with-bootloader --flake .#test-module
+```
+
+To try different backgrounds and splash text, edit the corresponding values in `module_tester.nix`.
+
+### Configuration Options
+| Option | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `enable` | boolean | `false` | Whether to enable the `double-minegrub-menu` theme service. |
+| `main_menu_background` (optional) | string | `"random"` | Path to the background image relative to the Minegrub assets (e.g., `"backgrounds/<filename>.png"`). Set to `"random"` to pick one automatically. |
+| `splash_text` (optional) | string | `"random"` | Custom splash text displayed on the menu. Set to `"random"` to choose a random splash text automatically. |
+
 ## Ventoy Support
 
 [Ventoy](https://www.ventoy.net/en/index.html) is using a modified version of grub, but has theme support.
