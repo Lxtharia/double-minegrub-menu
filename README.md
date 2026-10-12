@@ -116,7 +116,8 @@ Add this in `flake.nix`:
 ```nix
 {
     inputs = {
-        double-minegrub-menu.url = "github:Lxtharia/double-minegrub-menu/main";
+        double-minegrub-menu.url = "github:Lxtharia/double-minegrub-menu/main";  
+        inputs.nixpkgs.follows = "nixpkgs";
     };
 
     outputs = inputs@{self, ...}: {
@@ -133,8 +134,12 @@ Add this in `flake.nix`:
 Then enable and configure the service in your configuration.nix:, for example:
 
 ```nix
-{pkgs, config, ...}:{
+{pkgs, config, ...}: {
 
+    boot.loader.grub = {
+        enable = true;
+    };
+   
     services.double-minegrub-menu = {
         enable = true;
         main_menu_background = "backgrounds/1.13 - [Aquatic update].png";
