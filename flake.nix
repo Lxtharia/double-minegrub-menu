@@ -11,12 +11,12 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in 
     {
-      #nixos configuration for testing the module (running on VM)
+      # Nixos tester configuration file for testing the module (running on VM) 
       nixosConfigurations.test-module = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           self.nixosModules.default
-          ./test_config.nix
+          ./module_tester.nix
         ];
       };
  
@@ -26,8 +26,8 @@
           cfg = config.services.double-minegrub-menu;
 
           # check the value of background and splashText options
-          backgroundArg = if cfg.background == "random" then "" else cfg.background;
-          splashTextArg = if cfg.splashText == "random" then "" else cfg.splashText;
+          backgroundArg = if cfg.main_menu_background == "random" then "" else cfg.main_menu_background;
+          splashTextArg = if cfg.splash_text == "random" then "" else cfg.splash_text;
 
           minegrub-theme = pkgs.fetchFromGitHub {
             owner = "Lxtharia";
@@ -68,14 +68,14 @@
           options.services.double-minegrub-menu = {
             enable = mkEnableOption "enable the double menu";
 
-            #Optional configuration
-            background = mkOption {
+            #Optional configuration for configuring main menu background and splash text
+            main_menu_background = mkOption {
               type = types.str;
               default = "random";
-              description = "the grub background";
+              description = "main menu background";
             };
 
-            splashText = mkOption {
+            splash_text = mkOption {
               type = types.str;
               default = "random";
               description = "the text that appear on Minegrub logo";
@@ -117,7 +117,7 @@
                 "grub/mainmenu.cfg" = ./mainmenu.cfg;
               } // themeFileEntries // bgFileEntries;
 
-              # 3. Inject the logic from 05_twomenus into grub.cfg
+              # Inject the logic from 05_twomenus into grub.cfg
               extraConfig = ''
                 exec tail -n +3 $0
                 
