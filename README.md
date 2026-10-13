@@ -22,6 +22,10 @@ Yea, its possible, and its fun
 
 Here we provide two methods to install it: automatic installation and manual installation.
 
+<details>
+
+<summary> Automatic Installation </summary>
+
 ## Automatic Installation
 
 All you only need to do is to clone this project, and run the bash script we provide:
@@ -31,6 +35,11 @@ sudo ./install.sh
 ```
 
 Then everything is done! Our installation script will prepare everything well for you.
+</details>
+
+<details>
+
+<summary> Manual Installation </summary>
 
 ## Manual Installation
 
@@ -79,6 +88,13 @@ You can also choose to install it manually, just do as follow:
     ```bash
     sudo grub-editenv - unset config_file
     ```
+
+</details>
+
+<details>
+
+<summary> Gentoo Installation </summary>
+
 ## Gentoo Installation
 - Add the overlay to your system
     ```bash
@@ -109,6 +125,12 @@ You can also choose to install it manually, just do as follow:
     sudo grub-editenv - unset config_file
     ```
 - After that please edit your `/etc/default/grub` properly.
+
+</details>
+
+<details>
+
+<summary> NixOS Installation </summary>
 
 ## NixOS Installation
 Add this in `flake.nix`:
@@ -185,12 +207,22 @@ To try different backgrounds and splash text, edit the corresponding values in `
 | `main_menu_background` (optional) | string | `"random"` | the background PNG image relative to the Minegrub main menu background assets (you can see all the assets [here](https://github.com/Lxtharia/minegrub-theme/tree/dev/background_options)). Set to `"random"` to pick one automatically. |
 | `splash_text` (optional) | string | `"random"` | Custom splash text displayed on the menu. Set to `"random"` to choose a random splash text automatically. |
 
+</details>
+
+<details>
+
+<summary> Ventoy Support </summary>
+
 ## Ventoy Support
 
 [Ventoy](https://www.ventoy.net/en/index.html) is using a modified version of grub, but has theme support.
 If you want Ventoy to use both themes see [here.](./ventoy/README.md)
 
+</details>
+
 # Explanation (???)
+
+<details>
 
 oh boi here we go:
 
@@ -229,7 +261,12 @@ And if we select "Singlebooter" we want to load "the real config file" with the 
 - but now the "chosen" variable is set (because we have chosen an option)
 - and if this variable is set, we prevent the grub.cfg to load mainmenu.cfg, and we see our normal boot options
 
+</details>
+
 # Notes (!!!)
+
+<details>
+
 - the fun zone
 
 - I write unnesessarily long READMEs
@@ -237,3 +274,5 @@ And if we select "Singlebooter" we want to load "the real config file" with the 
 - Fun-fact: if you generate or copy your grub.cfg to /boot/grub/custom.cfg your grub will be stuck in an infinite loop! (Luckily I learned that in a VM)
 - I'm proud of this
 - USE THIS ON YOUR OWN RISK, if your grub is broken i take no responsibilty, better have that live boot stick ready
+
+</details>
