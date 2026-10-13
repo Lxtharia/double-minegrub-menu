@@ -166,6 +166,14 @@ You can test the theme before applying it on your machine by building a VM with 
 
 ```bash
 sudo nixos-rebuild build-vm-with-bootloader --flake .#test-module
+./result/bin/run-nixos-vm
+```
+
+After successfully enter the system, run this command to set the `config_file` environment variable so that the main menu theme appears and then reboot the system:
+
+```bash
+sudo grub-editenv - set config_file=mainmenu.cfg
+sudo reboot
 ```
 
 To try different backgrounds and splash text, edit the corresponding values in `module_tester.nix`. Both username and password after build the VM is `nixos`.
