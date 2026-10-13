@@ -26,7 +26,7 @@
           cfg = config.boot.loader.grub.double-minegrub-menu;
 
           # check the value of background and splashText options
-          backgroundArg = if cfg.main_menu_background == "random" then "" else cfg.main_menu_background;
+          backgroundArg = if cfg.main_menu_background == "random" then "" else "backgrounds/${cfg.main_menu_background}";
           splashTextArg = if cfg.splash_text == "random" then "" else cfg.splash_text;
 
           minegrub-theme = pkgs.fetchFromGitHub {
@@ -60,7 +60,7 @@
             cd /boot/grub/themes/minegrub
             export PATH="${fakeFetch}/bin:${pythonEnv}/bin:$PATH"
             exec ${pythonEnv}/bin/python3 update_theme.py \
-              backgrounds/${escapeShellArg backgroundArg} \
+              ${escapeShellArg backgroundArg} \
               ${escapeShellArg splashTextArg}
           '';
         in

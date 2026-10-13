@@ -23,8 +23,8 @@
   # Test the module
   boot.loader.grub.double-minegrub-menu = {
     enable = true;
-    main_menu_background = "1.13 - [Aquatic update].png";
-    splash_text = "100% Declarative";
+    main_menu_background = "1.16 - [Nether Update].png";
+    splash_text = "random";
   };
 
   nix = {
