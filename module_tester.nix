@@ -21,9 +21,9 @@
   };
 
   # Test the module
-  services.double-minegrub-menu = {
+  boot.loader.grub.double-minegrub-menu = {
     enable = true;
-    main_menu_background = "backgrounds/1.13 - [Aquatic update].png";
+    main_menu_background = "1.13 - [Aquatic update].png";
     splash_text = "100% Declarative";
   };
 

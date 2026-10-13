@@ -23,7 +23,7 @@
       nixosModules.default = { config, lib, pkgs, ... }:
         with lib; 
         let
-          cfg = config.services.double-minegrub-menu;
+          cfg = config.boot.loader.grub.double-minegrub-menu;
 
           # check the value of background and splashText options
           backgroundArg = if cfg.main_menu_background == "random" then "" else cfg.main_menu_background;
@@ -60,12 +60,12 @@
             cd /boot/grub/themes/minegrub
             export PATH="${fakeFetch}/bin:${pythonEnv}/bin:$PATH"
             exec ${pythonEnv}/bin/python3 update_theme.py \
-            ${escapeShellArg backgroundArg} \
-            ${escapeShellArg splashTextArg}
+              backgrounds/${escapeShellArg backgroundArg} \
+              ${escapeShellArg splashTextArg}
           '';
         in
         {
-          options.services.double-minegrub-menu = {
+          options.boot.loader.grub.double-minegrub-menu = {
             enable = mkEnableOption "enable the double menu";
 
             #Optional configuration for configuring main menu background and splash text
@@ -82,7 +82,7 @@
             };
           };
 
-          # enable this configuration if services.double-minegrub-menu.enable = true;
+          # enable this configuration if boot.loader.grub.double-minegrub-menu.enable = true;
           config = mkIf cfg.enable {
 
             #grub configuration
