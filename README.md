@@ -168,7 +168,7 @@ You can test the theme before applying it on your machine by building a VM with 
 sudo nixos-rebuild build-vm-with-bootloader --flake .#test-module
 ```
 
-To try different backgrounds and splash text, edit the corresponding values in `module_tester.nix`.
+To try different backgrounds and splash text, edit the corresponding values in `module_tester.nix`. Both username and password after build the VM is `nixos`.
 
 ### Configuration Options
 | Option | Type | Default | Description |
