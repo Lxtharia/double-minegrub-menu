@@ -166,6 +166,21 @@ Then enable and configure the service in your configuration file (e.g, `configur
             enable = true;
             main_menu_background = "1.13 - [Aquatic update].png";
             splash_text = "100% Declarative";
+            world_selection_custom_icons = with config.system; [
+                {
+                    inherit name;
+                    lineTop = with nixos; distroName + " " + codeName + " (" + version + ")";
+                    lineBottom = "Survival Mode, No Cheats, Version: " + nixos.release;
+
+                    # Icon: you can use an icon from the remote repo, or load from a local file
+                    imgName = "nixos";
+
+                    # customImg = builtins.path {
+                    #   path = ./nixos-logo.png;
+                    #   name = "nixos-img";
+                    # };
+                }
+            ];
         };
     };
 }
@@ -204,6 +219,7 @@ To try different backgrounds and splash text, edit the corresponding values in `
 | Option | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `enable` | boolean | `false` | Whether to enable the `double-minegrub-menu` theme service. |
+| ` world_selection_custom_icons` (optional) | [...] | [...] | Custom icons for the Minegrub world-selection menu |
 | `main_menu_background` (optional) | string | `"random"` | the background PNG image relative to the Minegrub main menu background assets (you can see all the assets [here](https://github.com/Lxtharia/minegrub-theme/tree/dev/background_options)). Set to `"random"` to pick one automatically. |
 | `splash_text` (optional) | string | `"random"` | Custom splash text displayed on the menu. Set to `"random"` to choose a random splash text automatically. |
 
@@ -221,8 +237,6 @@ If you want Ventoy to use both themes see [here.](./ventoy/README.md)
 </details>
 
 # Explanation (???)
-
-<details>
 
 oh boi here we go:
 
@@ -261,11 +275,7 @@ And if we select "Singlebooter" we want to load "the real config file" with the 
 - but now the "chosen" variable is set (because we have chosen an option)
 - and if this variable is set, we prevent the grub.cfg to load mainmenu.cfg, and we see our normal boot options
 
-</details>
-
 # Notes (!!!)
-
-<details>
 
 - the fun zone
 
@@ -274,5 +284,3 @@ And if we select "Singlebooter" we want to load "the real config file" with the 
 - Fun-fact: if you generate or copy your grub.cfg to /boot/grub/custom.cfg your grub will be stuck in an infinite loop! (Luckily I learned that in a VM)
 - I'm proud of this
 - USE THIS ON YOUR OWN RISK, if your grub is broken i take no responsibilty, better have that live boot stick ready
-
-</details>
