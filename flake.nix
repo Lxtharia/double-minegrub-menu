@@ -3,6 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    minegrub-world-sel-theme = {
+      url = "github:Lxtharia/minegrub-world-sel-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{self, nixpkgs, ...}: 
@@ -36,13 +41,6 @@
             sha256 = "sha256-wusELfq9vxbkbZy8cPprcOldqoqSbKltxt++EW9gQ9g=";
           };
 
-          minegrub-world-sel = pkgs.fetchFromGitHub {
-            owner = "Lxtharia";
-            repo = "minegrub-world-sel-theme";
-            rev = "v1.1.0";
-            sha256 = "sha256-Hlp081T6HUd4n6CaTf3aousZwBuBly6+0T+Y2d5y+SE=";
-          };
-
           # Python environment bundled with Pillow
           pythonEnv = pkgs.python313.withPackages (ps: [
             ps.pillow
@@ -65,6 +63,10 @@
           '';
         in
         {
+          imports = [
+            inputs.minegrub-world-sel-theme.nixosModules.default
+          ];
+
           options.boot.loader.grub.double-minegrub-menu = {
             enable = mkEnableOption "enable the double menu";
 
@@ -80,6 +82,13 @@
               default = "random";
               description = "the text that appear on Minegrub logo";
             };
+
+            world_selection_custom_icons = mkOption {
+              type = types.listOf (types.attrsOf types.anything);
+              default = [];
+              description = "Custom icons for the Minegrub world-selection menu.";
+            };
+
           };
 
           # enable this configuration if boot.loader.grub.double-minegrub-menu.enable = true;
@@ -87,9 +96,13 @@
 
             #grub configuration
             boot.loader.grub = {
-              # Set the initial theme to the world-selection theme
-              theme = "${minegrub-world-sel}/minegrub-world-selection";
 
+              # Set world-selection theme as the initial theme 
+              minegrub-world-sel = {
+                enable = true;
+                customIcons = cfg.world_selection_custom_icons;
+              };
+              
               # Copy the second theme and the secondary config file to /boot/grub/
               extraFiles = let
                 themeDir = "${minegrub-theme}/minegrub";

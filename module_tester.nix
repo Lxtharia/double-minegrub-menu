@@ -25,8 +25,21 @@
     enable = true;
     main_menu_background = "1.16 - [Nether Update].png";
     splash_text = "random";
+    world_selection_custom_icons = with config.system; [
+      {
+        inherit name;
+        lineTop = with nixos; distroName + " " + codeName + " (" + version + ")";
+        lineBottom = "Survival Mode, No Cheats, Version: " + nixos.release;
+        # Icon: you can use an icon from the remote repo, or load from a local file
+        imgName = "nixos";
+        # customImg = builtins.path {
+        #   path = ./nixos-logo.png;
+        #   name = "nixos-img";
+        # };
+      }
+    ];
   };
-
+  
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
