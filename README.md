@@ -164,8 +164,13 @@ Then enable and configure the service in your configuration file (e.g, `configur
         #Add this on your configuration file
         double-minegrub-menu = {
             enable = true;
+
+            # main menu configurations
             main_menu_background = "1.13 - [Aquatic update].png";
             splash_text = "100% Declarative";
+            
+            # world selection configurations
+            world-selection_background_scaled = "1366x768";
             world_selection_custom_icons = with config.system; [
                 {
                     inherit name;
@@ -219,9 +224,11 @@ To try different backgrounds and splash text, edit the corresponding values in `
 | Option | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `enable` | boolean | `false` | Whether to enable the `double-minegrub-menu` theme service. |
-| ` world_selection_custom_icons` (optional) | [...] | [...] | Custom icons for the Minegrub world-selection menu |
-| `main_menu_background` (optional) | string | `"random"` | the background PNG image relative to the Minegrub main menu background assets (you can see all the assets [here](https://github.com/Lxtharia/minegrub-theme/tree/dev/background_options)). Set to `"random"` to pick one automatically. |
+| `main_menu_background` (optional) | string | `"random"` | the background PNG image relative to the Minegrub main menu background assets (you can see all the background assets [here](https://github.com/Lxtharia/minegrub-theme/tree/dev/background_options)). Set to `"random"` to pick one automatically. |
 | `splash_text` (optional) | string | `"random"` | Custom splash text displayed on the menu. Set to `"random"` to choose a random splash text automatically. |
+| ` world_selection_custom_icons` (optional) | list | [...] | Custom icons for the Minegrub world-selection menu |
+| `world_selection_background_scaled` (optional) | string | `"1920x1080"` | Resolution to which the world-selection background is scaled. Available resolutions are; `"1024x768"`, `"1280x1024"`, `"1280x720"`, `"1366x768"`, `"1536x1024"`, `"1920x1080"`, `"2560x1440"`, `"2560x1600"`, `"2736x1824"`.|
+
 
 </details>
 

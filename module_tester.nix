@@ -23,8 +23,13 @@
   # Test the module
   boot.loader.grub.double-minegrub-menu = {
     enable = true;
-    main_menu_background = "1.16 - [Nether Update].png";
+
+    #main menu configurations
+    main_menu_background = "1.21.5 - [Spring to Life].png";
     splash_text = "random";
+
+    #world selection theme configurations
+    world_selection_background_scaled = "1366x768";
     world_selection_custom_icons = with config.system; [
       {
         inherit name;

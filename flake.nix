@@ -88,7 +88,12 @@
               default = [];
               description = "Custom icons for the Minegrub world-selection menu.";
             };
-
+            
+            world_selection_background_scaled = mkOption {
+              type = types.str;
+              default = "1920x1080";
+              description = "Resolution to which the world-selection background is scaled";
+            };
           };
 
           # enable this configuration if boot.loader.grub.double-minegrub-menu.enable = true;
@@ -101,6 +106,7 @@
               minegrub-world-sel = {
                 enable = true;
                 customIcons = cfg.world_selection_custom_icons;
+                background = "assets/background-scaled/background-${cfg.world_selection_background_scaled}.png";
               };
               
               # Copy the second theme and the secondary config file to /boot/grub/
