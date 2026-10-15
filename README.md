@@ -170,7 +170,7 @@ Then enable and configure the service in your configuration file (e.g, `configur
             splash_text = "100% Declarative";
             
             # world selection configurations
-            world-selection_background_scaled = "1366x768";
+            world_selection_background_scaled = "1366x768";
             world_selection_custom_icons = with config.system; [
                 {
                     inherit name;
