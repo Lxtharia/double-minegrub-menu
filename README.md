@@ -22,6 +22,10 @@ Yea, its possible, and its fun
 
 Here we provide two methods to install it: automatic installation and manual installation.
 
+<details>
+
+<summary> Automatic Installation </summary>
+
 ## Automatic Installation
 
 All you only need to do is to clone this project, and run the bash script we provide:
@@ -31,6 +35,11 @@ sudo ./install.sh
 ```
 
 Then everything is done! Our installation script will prepare everything well for you.
+</details>
+
+<details>
+
+<summary> Manual Installation </summary>
 
 ## Manual Installation
 
@@ -79,6 +88,13 @@ You can also choose to install it manually, just do as follow:
     ```bash
     sudo grub-editenv - unset config_file
     ```
+
+</details>
+
+<details>
+
+<summary> Gentoo Installation </summary>
+
 ## Gentoo Installation
 - Add the overlay to your system
     ```bash
@@ -110,10 +126,122 @@ You can also choose to install it manually, just do as follow:
     ```
 - After that please edit your `/etc/default/grub` properly.
 
+</details>
+
+<details>
+
+<summary> NixOS Installation </summary>
+
+## NixOS Installation
+Add this in `flake.nix`:
+
+```nix
+{
+    inputs = {
+        double-minegrub-menu.url = "github:Lxtharia/double-minegrub-menu/main";  
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    outputs = inputs@{self, ...}: {
+        nixosConfigurations.<hostname> = nixpkgs.lib.nixosSystem {
+            modules = [
+                inputs.double-minegrub-menu.nixosModules.default
+                ./configuration.nix
+            ];
+        };
+    };
+}
+```
+
+Then enable and configure the service in your configuration file (e.g, `configuration.nix`) for example:
+
+```nix
+{pkgs, config, ...}: {
+
+    boot.loader.grub = {
+        enable = true;
+
+        #Add this on your configuration file
+        double-minegrub-menu = {
+            enable = true;
+
+            # main menu configurations
+            main_menu_background = "1.13 - [Aquatic update].png";
+            splash_text = "100% Declarative";
+            
+            # world selection configurations
+            world_selection_background_scaled = "1366x768";
+            world_selection_custom_icons = with config.system; [
+                {
+                    inherit name;
+                    lineTop = with nixos; distroName + " " + codeName + " (" + version + ")";
+                    lineBottom = "Survival Mode, No Cheats, Version: " + nixos.release;
+
+                    # Icon: you can use an icon from the remote repo, or load from a local file
+                    imgName = "nixos";
+
+                    # customImg = builtins.path {
+                    #   path = ./nixos-logo.png;
+                    #   name = "nixos-img";
+                    # };
+                }
+            ];
+        };
+    };
+}
+```
+
+after that, **rebuild your system**, and then set the `config_file` environment variable in `grubenv` to enable the main menu theme:
+
+```bash
+nix-shell -p grub2 --command "sudo grub-editenv - set config_file=mainmenu.cfg"
+```
+
+To remove the variable and **disable the theme**, run:
+
+```bash
+nix-shell -p grub2 --command "sudo grub-editenv - unset config_file=mainmenu.cfg"
+```
+
+### Testing the theme
+You can test the theme before applying it on your machine by building a VM with the bootloader:
+
+```bash
+sudo nixos-rebuild build-vm-with-bootloader --flake .#test-module
+./result/bin/run-nixos-vm
+```
+
+After successfully enter the system, run this command to set the `config_file` environment variable so that the main menu theme appears and then reboot the system:
+
+```bash
+sudo grub-editenv - set config_file=mainmenu.cfg
+sudo reboot
+```
+
+To try different backgrounds and splash text, edit the corresponding values in `module_tester.nix`. Both username and password after build the VM is `nixos`.
+
+### Configuration Options
+| Option | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `enable` | boolean | `false` | Whether to enable the `double-minegrub-menu` theme service. |
+| `main_menu_background` (optional) | string | `"random"` | the background PNG image relative to the Minegrub main menu background assets (you can see all the background assets [here](https://github.com/Lxtharia/minegrub-theme/tree/dev/background_options)). Set to `"random"` to pick one automatically. |
+| `splash_text` (optional) | string | `"random"` | Custom splash text displayed on the menu. Set to `"random"` to choose a random splash text automatically. |
+| ` world_selection_custom_icons` (optional) | list | [...] | Custom icons for the Minegrub world-selection menu |
+| `world_selection_background_scaled` (optional) | string | `"1920x1080"` | Resolution to which the world-selection background is scaled. Available resolutions are; `"1024x768"`, `"1280x1024"`, `"1280x720"`, `"1366x768"`, `"1536x1024"`, `"1920x1080"`, `"2560x1440"`, `"2560x1600"`, `"2736x1824"`.|
+
+
+</details>
+
+<details>
+
+<summary> Ventoy Support </summary>
+
 ## Ventoy Support
 
 [Ventoy](https://www.ventoy.net/en/index.html) is using a modified version of grub, but has theme support.
 If you want Ventoy to use both themes see [here.](./ventoy/README.md)
+
+</details>
 
 # Explanation (???)
 
@@ -155,6 +283,7 @@ And if we select "Singlebooter" we want to load "the real config file" with the 
 - and if this variable is set, we prevent the grub.cfg to load mainmenu.cfg, and we see our normal boot options
 
 # Notes (!!!)
+
 - the fun zone
 
 - I write unnesessarily long READMEs
