@@ -38,7 +38,7 @@
             owner = "Lxtharia";
             repo = "minegrub-theme";
             rev = "v3.1.0";
-            sha256 = "sha256-wusELfq9vxbkbZy8cPprcOldqoqSbKltxt++EW9gQ9g=";
+            sha256 = "sha256-+7b0jXVVAyIAtYKeZZONZv2qzfESjwITSng1TVjyAfQ=";
           };
 
           # Python environment bundled with Pillow
