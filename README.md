@@ -171,11 +171,14 @@ Then enable and configure the service in your configuration file (e.g, `configur
             
             # world selection configurations
             world_selection_background_scaled = "1366x768";
-            world_selection_custom_icons = with config.system; [
+            world_selection_custom_icons = with config.system.nixos; [
                 {
-                    inherit name;
-                    lineTop = with nixos; distroName + " " + codeName + " (" + version + ")";
-                    lineBottom = "Survival Mode, No Cheats, Version: " + nixos.release;
+                    # run nix eval '<flake-path>#nixosConfigurations.<hostname>.config.system.nixos'
+                    # to see others option
+
+                    name = distroId;
+                    lineTop = distroName + " " + codeName + " (" + version + ")";
+                    lineBottom = "Survival Mode, No Cheats, Version: " + release;
 
                     # Icon: you can use an icon from the remote repo, or load from a local file
                     imgName = "nixos";
