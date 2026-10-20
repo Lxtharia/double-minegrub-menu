@@ -37,8 +37,8 @@
           minegrub-theme = pkgs.fetchFromGitHub {
             owner = "Lxtharia";
             repo = "minegrub-theme";
-            rev = "cdd067ebc31ac59e24ae3c99e5b0f05a18eb8a1d";
-            sha256 = "sha256-JPu+WSXX4TaQnue+UKGMmv2YYCbM5t9Bwwm0fp6lJXc=";
+            rev = "142f67baed783b4f6774f316476f46ff7ab1823a";
+            sha256 = "sha256-2qP9aYUmFTmMYenLfbfYJ8P+XUGJYJFDdbQBheasr8k=";
           };
 
           # Python environment bundled with Pillow
