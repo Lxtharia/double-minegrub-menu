@@ -20,22 +20,25 @@ Yea, its possible, and its fun
 
 # Installation
 
-Here we provide two methods to install it: automatic installation and manual installation.
-
-<details>
-
-<summary> Automatic Installation </summary>
+There are multiple ways to install the theme, automatic installation being the easiest:
 
 ## Automatic Installation
 
-All you only need to do is to clone this project, and run the bash script we provide:
+All you only need to do is to clone this project or to download the `install.sh` file and to execute it as root:
 
-```shell
+```bash
 sudo ./install.sh
 ```
 
-Then everything is done! Our installation script will prepare everything well for you.
-</details>
+The script will install all files and update the grub configuration automatically.
+
+To update the theme, just pull the newest version of the install script and run it again.
+```bash
+git pull
+sudo ./install.sh
+```
+
+If you want to enable specific features of a theme (Changing splash text and backgrounds, icons for UEFI entry, etc.), check out the instructions in the respective repos.
 
 <details>
 

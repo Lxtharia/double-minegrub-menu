@@ -1,2 +1,5 @@
 result
 *.qcow2
+/minegrub-double-menu
+/minegrub-theme
+/minegrub-world-sel-theme

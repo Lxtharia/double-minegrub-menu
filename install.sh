@@ -7,6 +7,8 @@ trap 'echo "[x] Failed to set up, failed at command \"${BASH_COMMAND}\""; exit 1
 export GRUB_PREFIX="grub"
 export GRUB_CONFIG_FILE="/etc/default/grub"
 
+echo "[>] Updating repositories..."
+
 if [ ! -d /boot/$GRUB_PREFIX ]; then
 	export GRUB_PREFIX="grub2"
 fi
@@ -27,18 +29,25 @@ echo "[*] Using grub configuration: ${GRUB_CONFIG_FILE}"
 # clone project
 
 if [ ! -d ./minegrub-world-sel-theme ]; then
-	git clone https://github.com/Lxtharia/minegrub-world-sel-theme.git
+	git clone --depth=2 https://github.com/Lxtharia/minegrub-world-sel-theme.git
+else
+    git --git-dir ./minegrub-world-sel-theme/.git pull
 fi
 
 if [ ! -d ./minegrub-theme ]; then
-	git clone https://github.com/Lxtharia/minegrub-theme.git
+	git clone --depth=2 https://github.com/Lxtharia/minegrub-theme.git
+else
+    git --git-dir ./minegrub-theme/.git pull
 fi
 
 if [ ! -d ./minegrub-double-menu ]; then
 	git clone https://github.com/Lxtharia/minegrub-double-menu.git
+else
+    git --git-dir ./minegrub-double-menu/.git pull
 fi
 
 # copy theme files
+read -p "[>] Install files to /boot/$GRUB_PREFIX/themes ? [ENTER] "
 
 if [ ! -d /boot/$GRUB_PREFIX/themes ]; then
 	sudo mkdir -p /boot/$GRUB_PREFIX/themes
@@ -62,6 +71,7 @@ if [ ! -f /etc/grub.d/05_twomenus ]; then
 fi
 
 # change grub configuration
+read -p "[>] Update grub configuration? [ENTER]"
 
 sudo sed -i "/^GRUB_TIMEOUT_STYLE=/d" /etc/default/grub
 sudo sed -i "/^GRUB_THEME=/d" /etc/default/grub
